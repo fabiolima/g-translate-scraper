@@ -1,5 +1,7 @@
-require "sinatra"
-require "sinatra/reloader" if development?
+# frozen_string_literal: true
+
+require 'sinatra'
+require 'sinatra/reloader' if development?
 require 'pry' if development?
 require 'watir'
 require 'nokogiri'
@@ -22,8 +24,8 @@ before do
 
   # Initialize response object
   @op_response = {
-    :text => @text,
-    :translations => []
+    text: @text,
+    translations: []
   }
 
   @url = "https://translate.google.com/?sl=#{@sl}&tl=#{@tl}&hl=#{@hl}&text=#{@text}&op=translate"
@@ -44,10 +46,10 @@ get '/translate' do
     variation_description = result.at_css('.NlvNvf')&.text
 
     @op_response[:translations].push({
-      :data => basic_result || complex_result,
-      :variationDescription => variation_description
+      data: basic_result || complex_result,
+      variationDescription: variation_description
     }.compact)
-  end 
+  end
 
   @op_response.to_json
 end
