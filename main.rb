@@ -1,7 +1,6 @@
 require "sinatra"
 require "sinatra/reloader" if development?
 require 'pry' if development?
-require 'httparty'
 require 'watir'
 require 'nokogiri'
 browser = Watir::Browser.new :chrome, headless: true
@@ -30,7 +29,7 @@ before do
   @url = "https://translate.google.com/?sl=#{@sl}&tl=#{@tl}&hl=#{@hl}&text=#{@text}&op=translate"
 end
 
-get '/' do
+get '/translate' do
   browser.goto @url
   sleep 1
 
@@ -38,15 +37,15 @@ get '/' do
 
   results = doc.css('[data-result-index]')
 
-  results.map do |result|
+  results.each do |result|
     basic_result = result.at_css('[jsname="W297wb"]')&.text
     complex_result = result.at_css('.VIiyi')&.text
-    
-    caption = result.at_css('.NlvNvf')&.text
+
+    variation_description = result.at_css('.NlvNvf')&.text
 
     @op_response[:translations].push({
       :data => basic_result || complex_result,
-      :caption => caption
+      :variationDescription => variation_description
     }.compact)
   end 
 
