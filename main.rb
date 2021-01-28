@@ -17,7 +17,7 @@ before do
   @sl = params['sl'] || 'en'
 
   # Translation language
-  @tl = params['tl'] || 'pt'
+  @tl = params['tl'] || 'pt-BR'
 
   # User navigator language (default browser language or preference)
   @hl = params['hl'] || @tl
