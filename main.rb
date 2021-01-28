@@ -8,7 +8,7 @@ require 'watir'
 require 'nokogiri'
 browser = Watir::Browser.new :chrome, headless: true
 
-set :allow_origin, "https://cdpn.io http://localhost:8080"
+set :allow_origin, "https://cdpn.io https://codepen.io http://localhost:8080"
 set :allow_methods, "GET,HEAD,POST"
 set :allow_headers, "content-type,if-modified-since"
 
