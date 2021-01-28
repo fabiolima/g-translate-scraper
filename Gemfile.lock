@@ -35,6 +35,7 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-cors (1.2.0)
     tilt (2.0.10)
     watir (6.17.0)
       regexp_parser (~> 1.2)
@@ -48,6 +49,7 @@ DEPENDENCIES
   pry
   sinatra
   sinatra-contrib
+  sinatra-cors (~> 1.2)
   watir
 
 BUNDLED WITH

@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'sinatra/cors'
 require 'sinatra/reloader' if development?
 require 'pry' if development?
 require 'watir'
 require 'nokogiri'
 browser = Watir::Browser.new :chrome, headless: true
+
+set :allow_origin, "https://cdpn.io http://localhost:8080"
+set :allow_methods, "GET,HEAD,POST"
+set :allow_headers, "content-type,if-modified-since"
 
 before do
   content_type :json
